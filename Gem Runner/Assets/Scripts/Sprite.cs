@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Sprite : MonoBehaviour
 {
@@ -6,14 +7,11 @@ public class Sprite : MonoBehaviour
     [SerializeField] float jumpForce = 10f;
     private Rigidbody2D rb;
 
-
-    // start
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // update
     void Update()
     {
         MovePlayer();
@@ -29,7 +27,6 @@ public class Sprite : MonoBehaviour
         transform.Translate(movement * moveSpeed * Time.deltaTime);
     }
 
-    // figure out why only space bar works to jump
     void Jump()
     {
         if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Vertical"))
@@ -37,5 +34,18 @@ public class Sprite : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0f);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Trap"))
+        {
+            HandleTrapCollision();
+        }
+    }
+
+    private void HandleTrapCollision()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
