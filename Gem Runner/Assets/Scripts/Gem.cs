@@ -19,14 +19,12 @@ public class Gem : MonoBehaviour
         if (gameTimer != null)
         {
             gameTimer.AddTime(timeToAdd);
-            Debug.Log("Time added: " + timeToAdd);
+        
         }
         else
         {
-            Debug.LogWarning("GameTimer not found!");
         }
 
         Destroy(gameObject);
-        Debug.Log("Gem destroyed");
     }
 }
