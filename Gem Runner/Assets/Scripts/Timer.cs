@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class GameTimer : MonoBehaviour
 {
-    [SerializeField] float initialTime = 60f; 
+    [SerializeField] float initialTime = 60f;
     private float currentTime;
-    public TextMeshProUGUI timerText; 
+    public TextMeshProUGUI timerText;
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class GameTimer : MonoBehaviour
 
         if (currentTime <= 0.5f)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);       
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
